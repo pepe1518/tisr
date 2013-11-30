@@ -1,0 +1,189 @@
+<div id="formulario">
+
+<form   id="formusuario" name="formusuario" action="" method="post">
+		<table>
+			<tr>
+				<td><label>Nombre (*): </label></td>
+				<td><input type="text"  id="nombre"  name="nombre" value="" placeholder=" Introdusca su Nombre"  autofocus="autofocus" /></td>
+			</tr>
+			<tr>
+				<td><label>Apellido Paterno(*): </label></td>
+				<td><input type="text"  id="apellidop"  name="apellidop" value=""/></td>
+			</tr>
+			<tr>
+				<td><label>Apellido Materno(*): </label></td>
+				<td><input type="text"  id="apellidom" name="apellidom" value="" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Fecha Nacimiento: </label></td>
+				<td><input type="date"  id="fechanacimiento" name="fechanacimiento" value="" /></td>
+			</tr>
+			<tr>
+				<td><label>Ci: </label></td>
+				<td><input type="text" id="ci"  name="ci" value="" /></td>
+			</tr>
+			<tr>
+				<td><label>Email: </label></td>
+				<td><input type="email" id="email" name="email" value="" /></td>
+				<div id="resultadoemail"></div>
+			</tr>
+			<tr>
+				<td><label>Login: </label></td>
+				<td><input type="text" id="login" name="login" value="" /></td>
+				<div id="resultado"></div>
+			</tr>
+			
+			<tr>
+				<td><label>Password: </label></td>
+				<td><input type="password"  id="pasword" name="pasword" value="" /></td>
+			</tr>
+			
+					
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+  <script src='js/jquery.validate.min.js'></script>
+
+
+<script>
+$(document).ready(function() {
+		$("#formusuario").validate({
+		rules: {
+			nombre: "required",
+			apellidop: "required",
+			login: {
+				required: true,
+				minlength: 2
+			},
+			pasword: {
+				required: true,
+				minlength: 5
+			},
+			
+			email: {
+				required: true,
+				email: true
+			},
+			
+			//agree: "required"
+		},
+		messages: {
+			nombre: "Por favor ingrese su nombre",
+			apellidop: "Por favor ingrese su apellido",
+			login: {
+				required: "por favor ingrser su login",
+				minlength: "Minimo es de dos caracteres es su login"
+			},
+			pasword: {
+				required: "Ingrese su password",
+				minlength: "minimo es de 5 caracteres"
+			},
+			email: "Ingrese un valida  direccion email",
+			//agree: "Please accept our policy"
+		},
+		
+	errorElement:'span'
+	});
+
+});
+</script>
+
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    
+    var consulta;
+           
+    //hacemos focus
+    $("#login").focus();
+                                             
+    //comprobamos si se pulsa una tecla
+    $("#login").keyup(function(e){
+           //obtenemos el texto introducido en el campo
+           consulta = $("#login").val();
+                                    
+           //hace la búsqueda
+           $("#resultado").delay(1000).queue(function(n) {      
+                                         
+                $("#resultado").html('<img src="ajax-loader.gif" />');
+                                         
+                      $.ajax({
+                            type: "POST",
+                            url: "comprobar.php",
+                            data: "login="+consulta,
+                            dataType: "html",
+                            error: function(){
+                                  alert("error petición ajax");
+                            },
+                            success: function(data){                                                      
+                                  $("#resultado").html(data);
+                                  n();
+                            }
+                });
+                                         
+           });
+                              
+    });
+                        
+});
+
+
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    
+    var consulta;
+           
+    //hacemos focus
+    $("#email").focus();
+                                             
+    //comprobamos si se pulsa una tecla
+    $("#email").keyup(function(e){
+           //obtenemos el texto introducido en el campo
+           consulta = $("#email").val();
+                                    
+           //hace la búsqueda
+           $("#resultadoemail").delay(1000).queue(function(n) {      
+                                         
+                $("#resultadoemail").html('<img src="ajax-loader.gif" />');
+                                         
+                      $.ajax({
+                            type: "POST",
+                            url: "comprobaremail.php",
+                            data: "emails="+consulta,
+                            dataType: "html",
+                            error: function(){
+                                  alert("error petición ajax");
+                            },
+                            success: function(data){                                                      
+                                  $("#resultadoemail").html(data);
+                                  n();
+                            }
+                });
+                                         
+           });
+                              
+    });
+                        
+});
+
+
+
+</script>
+
+
+
+</div>

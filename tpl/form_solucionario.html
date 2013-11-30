@@ -1,0 +1,27 @@
+
+<div id="formulario">
+	<form  id="formsolucionario" name="formsolucionario" action="solucionario.php?action=[accion]" method="post" enctype="multipart/form-data">
+		<table>
+		
+		    <tr>
+				<td>Problema: </td>
+				<td>[problema]</td>
+			</tr>
+			<tr>
+				<td>Lenguaje: </td>
+				<td>[lenguaje]</td>
+			</tr>
+			<tr>
+				<td><label>Documento: </label></td>
+				<td><input name="imagen_path" type="file" /></td>
+				
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+	</form>
+</div>

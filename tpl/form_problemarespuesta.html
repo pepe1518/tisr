@@ -1,0 +1,46 @@
+<div id="formulario">
+	<form name="formproblema" action="problemarespuesta.php?action=[accion]" method="post" enctype="multipart/form-data">
+		<table>
+		   
+			<tr>
+				<td>Nombre Problema: </td>
+				<td>[nombre]</td>
+			</tr>
+				 <tr>
+				<td>Lenguaje: </td>
+				<td>[lenguaje]</td>
+			</tr>
+                        
+			<tr>
+					<td><label>Codigo: </label></td>
+				<td> <textarea name="codepat"   id="codepat"  value="[codepat]" cols="80" rows="18"></textarea></td>
+			
+			</tr>
+			
+			</tr>
+			<tr>
+				<td><label>Entrada: </label></td>
+				<td> <textarea name="entrada"  id="entrada"   value="[entrada]" cols="40" rows="5"></textarea></td>
+			</tr>
+			
+			<tr>
+				<td><label>Documento: </label></td>
+				<td><input name="imagen_path" type="file" /></td>
+				
+			</tr>
+		
+		</table>
+		
+		<input type="submit" value="Guardar">
+	
+	</form>
+</div>
+<script type="text/javascript"> CKEDITOR.replace('codepatk',{
+	extraPlugins : 'bbcode',
+	toolbar :
+	[
+		
+		['FontSize', 'Bold', 'Italic','Underline'],
+		['TextColor', '-','SpecialChar', '-', 'Maximize']
+	]
+}); </script>    

@@ -1,0 +1,25 @@
+<div id="formulario">
+	<form name="formmenu" action="menu.php?action=[accion]" method="post">
+		<table>
+			<tr>
+				<td><label>Nombre Menu(*): </label></td>
+				<td><input type="text" name="nombre" value="[nombre]" required/></td>
+			</tr>
+			<tr>
+				<td><label>Url Menu(*): </label></td>
+				<td><input type="text" name="url" value="[url]" required/></td>
+			</tr>
+			<tr>
+				<td><label>Peso Menu(*): </label></td>
+				<td><input type="text" name="peso" value="[peso]" required/></td>
+			</tr>
+			
+					
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+	</form>
+</div>

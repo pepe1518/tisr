@@ -1,0 +1,27 @@
+
+<div id="formulario">
+	<form  id="formrol" name="formrol" action="rol.php?action=[accion]" method="post">
+		<table>
+			<tr>
+				<td><label>Nombre: </label></td>
+				<td><input type="text" id="nombre" name="nombre" value="[nombre]" required /></td>
+			</tr>
+			<tr>
+				<td>Activo: </td>
+				<td>[activo]</td>
+			</tr>
+			<tr>
+				<td><label>Descripcion: </label></td>
+				<td> <textarea name="descripcion"   value="[descripcion]" cols="45" rows="5"></textarea></td>
+
+			</tr>
+			
+		
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+	</form>
+</div>

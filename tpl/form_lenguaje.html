@@ -1,0 +1,40 @@
+<div id="formulario">
+	<form  id="formlenguaje" name="formlenguaje" action="lenguaje.php?action=[accion]" method="post">
+		<table>
+			<tr>
+				<td><label>Nombre Lenguaje(*): </label></td>
+				<td><input type="text"   id="nombre" name="nombre" value="[nombre]"/></td>
+			</tr>
+			<tr>
+				<td><label>Descripcion Lenguaje(*): </label></td>
+				<td><input type="text" name="descripcion" value="[descripcion]" required/></td>
+			</tr>
+			
+					
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<script>
+$(document).ready(function() {
+		$("#formlenguaje").validate({
+		rules: {
+			nombre: "required",
+				},
+		messages: {
+			nombre: "Por favor ingrese el nombre del lenguaje",
+			
+		},
+		
+	errorElement:'span'
+	});
+
+});
+</script>
+	
+	
+</div>

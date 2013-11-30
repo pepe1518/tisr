@@ -1,0 +1,180 @@
+<div id="formulario">
+		
+<form name="formusuario" id ='formusuario' action="usuariosistema.php?action=[accion]" method="POST">
+			<div id="error" class="error"><span></span></div>
+			<table cellpadding="0" cellspacing="0" class="tableForm">
+			<tbody>	
+			 <tr>
+				<td><label>Nombre (*): </label></td>
+				<td><input type="text"  id="nombre"  name="nombre" value="[nombre]"  size="45"   placeholder=" Introdusca su Nombre"  autofocus="autofocus" /></td>
+			 </tr>
+			 <tr>
+				<td><label>Apellido Paterno(*): </label></td>
+				<td><input type="text"  id="apellidop"   size="45" name="apellidop" value="[apellidop]"/></td>
+			</tr>
+			<tr>
+				<td><label>Apellido Materno(*): </label></td>
+				<td><input type="text"  id="apellidom" size="45"  name="apellidom" value="[apellidom]" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Fecha Nacimiento: </label></td>
+				<td><input type="date"  id="fechanacimiento"  size="45"  name="fechanacimiento" value="[fechanacimiento]" /></td>
+			</tr>
+			<tr>
+				<td><label>Ci: </label></td>
+				<td><input type="text" id="ci"   size="45"  name="ci" value="[ci]" /></td>
+				<tr><td><div id ="estadoci"></div></td></tr>
+			</tr>
+			<tr>
+				<td><label>Email: </label></td>
+				<td><input type="email" id="email"  size="45" name="email" value="[email]" /></td>
+				<tr><td><div id ="estadoemail"></div></td></tr>
+			</tr>
+			
+				<td>Colegio: </td>
+				<td>[colegio]</td>
+		   </tr>
+		   <tr>
+				<td>Rol: </td>
+				<td>[rol]</td>
+		   </tr>
+			
+					</tbody>
+				<tfoot>
+				<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			   </tr>
+				</tfoot>
+		
+			</table>
+		</form> 
+
+	
+	<script type="text/javascript">
+	        $(document).ready(function(){
+                $('#ci').focusout(function(){		  		//usuario es el id del input a validar
+                            if($('#ci').val()!= ""){ 		// si el input est� vacio no sera necesaria una validacion
+                            $.ajax({
+                                type: "POST",			  		//Metodo de envio de los datos
+                                url: "comprobar.php",	//script que se usara para la validacion del nick
+                                data: "ci="+$('#ci').val(),	//Enviamos el valor que esta en el input
+                                beforeSend: function(){
+                                    $('div#estadoci').html('Verificando...');	//Antes de recibir la respuesta se mostrara el mensaje verificando... 
+                                },
+                                success: function( respuesta ){
+                                    if (respuesta == "0")	//Si la respuesta es 0 el nick NO esta disponible
+									{						//Entonces en el div mostramos el mensaje de error
+                                    $('div#estadoci').html("<div style='color:red;'><img height='16' src='images/error.png'> Ci. de Usuario no disponible</div>");
+									$('#ci').val ("");	//Borramos el input ya que el nick es incorrecto
+									}
+                                    else					//Si la respuesta es 1 el nick SI esta disponible
+                                    $('div#estadoci').html("<div style='color:#04B431;'><img height='16' src='images/check.png'> Ci. de Usuario disponible</div>");
+                            }
+                        });
+                    }
+                });
+            });
+	</script>
+	<script type="text/javascript">
+	        $(document).ready(function(){
+                $('#email').focusout(function(){		  		//usuario es el id del input a validar
+                            if($('#email').val()!= ""){ 		// si el input est� vacio no sera necesaria una validacion
+                            $.ajax({
+                                type: "POST",			  		//Metodo de envio de los datos
+                                url: "comprobar.php",	//script que se usara para la validacion del nick
+                                data: "email="+$('#email').val(),	//Enviamos el valor que esta en el input
+                                beforeSend: function(){
+                                    $('div#estadoemail').html('Verificando...');	//Antes de recibir la respuesta se mostrara el mensaje verificando... 
+                                },
+                                success: function( respuesta ){
+                                    if (respuesta == "0")	//Si la respuesta es 0 el nick NO esta disponible
+									{						//Entonces en el div mostramos el mensaje de error
+                                    $('div#estadoemail').html("<div style='color:red;'><img height='16' src='images/error.png'> Email. de Usuario no disponible</div>");
+									$('#email').val ("");	//Borramos el input ya que el nick es incorrecto
+									}
+                                    else					//Si la respuesta es 1 el nick SI esta disponible
+                                    $('div#estadoemail').html("<div style='color:#04B431;'><img height='16' src='images/check.png'> Email. de Usuario disponible</div>");
+                            }
+                        });
+                    }
+                });
+            });
+	</script>
+		<script type="text/javascript">
+	        $(document).ready(function(){
+                $('#login').focusout(function(){		  		//usuario es el id del input a validar
+                            if($('#login').val()!= ""){ 		// si el input est� vacio no sera necesaria una validacion
+                            $.ajax({
+                                type: "POST",			  		//Metodo de envio de los datos
+                                url: "comprobar.php",	//script que se usara para la validacion del nick
+                                data: "login="+$('#login').val(),	//Enviamos el valor que esta en el input
+                                beforeSend: function(){
+                                    $('div#estadoUser').html('Verificando...');	//Antes de recibir la respuesta se mostrara el mensaje verificando... 
+                                },
+                                success: function( respuesta ){
+                                    if (respuesta == "0")	//Si la respuesta es 0 el nick NO esta disponible
+									{						//Entonces en el div mostramos el mensaje de error
+                                    $('div#estadoUser').html("<div style='color:red;'><img height='16' src='images/error.png'> Nombre de Usuario no disponible</div>");
+									$('#login').val ("");	//Borramos el input ya que el nick es incorrecto
+									}
+                                    else					//Si la respuesta es 1 el nick SI esta disponible
+                                    $('div#estadoUser').html("<div style='color:#04B431;'><img height='16' src='images/check.png'> Nombre de Usuario disponible</div>");
+                            }
+                        });
+                    }
+                });
+            });
+	</script>
+	
+			
+	
+	
+<script>
+$(document).ready(function() {
+		$("#formusuario").validate({
+		rules: {
+			nombre: "required",
+			apellidop: "required",
+			login: {
+				required: true,
+				minlength: 2
+			},
+			pasword: {
+				required: true,
+				minlength: 5
+			},
+			
+			email: {
+				required: true,
+				email: true
+			},
+			
+			//agree: "required"
+		},
+		messages: {
+			nombre: "Ingrese su nombre",
+			apellidop: "Ingrese su Apellido Paterno",
+			login: {
+				required: "Ingrser su login",
+				minlength: "Minimo es de dos caracteres en su login"
+			},
+			pasword: {
+				required: "Ingrese su password",
+				minlength: "minimo es de 5 caracteres"
+			},
+			email: "Ingrese su  email valido",
+			//agree: "Please accept our policy"
+		},
+		
+	errorElement:'span'
+	});
+
+});
+</script>
+
+
+
+</div>

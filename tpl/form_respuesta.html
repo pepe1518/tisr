@@ -1,0 +1,35 @@
+
+<div id="formulario">
+	<form  id="formrespuesta" name="formrespuesta" action="respuesta.php?action=[accion]" method="post" enctype="multipart/form-data">
+		<table>
+		
+		    <tr>
+				<td>Problema: </td>
+				<td>[problema]</td>
+			</tr>
+			<tr>
+				<td>Lenguaje: </td>
+				<td>[lenguaje]</td>
+			</tr>
+			
+			<tr>
+				<td><label>Documento: </label></td>
+				<td><input name="imagen_path" type="file" /></td>
+			</tr>
+			
+			<tr>
+				<td><label>Ingrese Dato de Salida(*): </label></td>
+				<td><input type="text" name="entreda" value="" required/></td>
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+			
+			
+			
+	</form>
+</div>

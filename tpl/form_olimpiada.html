@@ -1,0 +1,29 @@
+<div id="formulario">
+	<form name="formolimpiada" action="olimpiada.php?action=[accion]" method="post" onsubmit="return noVacio();">
+		<table>
+			<tr>
+				<td><label>Nombre Olimpiada(*): </label></td>
+				<td><input type="text" name="nombre" value="[nombre]" required/></td>
+			</tr>
+			<tr>
+				<td><label>Fecha Inicio: </label></td>
+				<td><input type="date"  id="fechainicio"  size="45"  name="fechainicio" value="[fechainicio]" /></td>
+			</tr>
+			<tr>
+				<td><label>Fecha fecha final: </label></td>
+				<td><input type="date"  id="fechafinal"  size="45"  name="fechafinal" value="[fechafinal]" /></td>
+			</tr>
+			<tr>
+				<td><label>Descripcion(*): </label></td>
+				<td><input type="text" name="descripcion" value="[descripcion]" required/></td>
+			</tr>
+			
+					
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');"></td>
+			</tr>
+		</table>
+	</form>
+</div>
