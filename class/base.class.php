@@ -3,7 +3,7 @@ class base
 {
 	function ranking() {
 
-$consulta= "select  u.`id_usuario`, u.`nombre_usuario`, u.`apellido_paterno`, AVG(n.`nota_olimpista`) as promedio
+$consulta= "select  u.id_usuario, u.nombre_usuario, u.apellido_paterno, AVG(n.`nota_olimpista`) as promedio
 from `usuario`  u, `respuesta`  r, `nota_olimpista` n
 where  u.`id_usuario`=r.`id_usuario`  and r.`id_respuesta`=n.`id_respuesta`
 GROUP  by  u.`id_usuario`";

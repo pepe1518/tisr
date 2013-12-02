@@ -94,7 +94,9 @@ class olimpiada
 						
 							<td><a href="#" onclick="ajax(\'formulario_nuevo\',\'olimpiada.php?action=editar&id='.$valor['id_olimpiada'].'\',\'\'); return false;"><center><img src="images/edit.gif" /></center></a></td>
 							<td><a onclick="return confirm(\'Esta seguro de eliminar los datos?\');" href="olimpiada.php?action=eliminar&id='.$valor['id_olimpiada'].'"><center><img src="images/delete.gif" /></center></a></td>
-						   </tr>';
+                               <td><a  href="problemaolimpiada.php?id='.$valor['id_olimpiada'].'"  TARGET="_self" ><center><img src="images/agregarboton.png" /></center></a></td>
+					
+							</tr>';
 			}
 			$lista .= "</table>";
 			//$lista .= paging::navigation(count($listaproveedor),"olimpiada.php",20);

@@ -94,7 +94,20 @@ function guardar()
             $vandera=true;
            // echo "ok";
             shell_exec("chmod -R 777 compilador/data/"); 
+            echo $ext;
+            if($ext=='java')
+            {
             exec("sh script.sh $name $nombrearchivosubido $ext");
+            }
+            if($ext=='c')
+            {
+            exec("sh scriptc.sh $name $nombrearchivosubido $ext");
+            }
+            if($ext=='cpp')
+            {
+            exec("sh scriptcc.sh $name $nombrearchivosubido $ext");
+            }
+            
             
             $rutaresultado=$rutaclass."/".$nombrearchivosubido."/salida.txt";
             
@@ -170,7 +183,7 @@ function guardar()
 		        $datossalidad[] = $row['dato_salida']; 
 		        } 
 				}
-      	 			//if(in_array($theData, $datossalidad))
+      	 			if(in_array($theData, $datossalidad))
 		 			{
 		 				$notacompilacion=$notacompilacion+50;
 		 			}
@@ -196,7 +209,7 @@ function guardar()
 		
 		
 	
-	//echo "<script>window.location.href='listaproblemas.php'</script>";
+echo "<script>window.location.href='listaproblemas.php'</script>";
 	}
 
 	function lista(){

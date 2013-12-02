@@ -1,0 +1,33 @@
+  <script src="js/jquery.js" type="text/javascript"></script>
+     <script src="js/jquery.quicksearch.js" type="text/javascript"></script>
+     <script src="js/jquery.multi-select.js" type="text/javascript"></script>
+      <script src="js/application.js" type="text/javascript"></script>
+        <link href="style/multi-select.css" media="screen" rel="stylesheet" type="text/css" />
+     <link href="style/application.css" media="screen" rel="stylesheet" type="text/css" />
+<div id="formulario">
+		
+<form name="formproblemaolimpiada" id ='formproblemaolimpiada' action="problemaolimpiada.php?action=[accion]" method="POST">
+		
+    <h1>Seleccione los Problemas para la Olimpiada</h1>
+    <br/>
+    <div  class='select-area'>
+    <div class='span12'>
+     [problema]
+      <br />
+    </div>
+  <script>
+    $('#custom-headers').multiSelect({
+      selectableHeader: "<div class='custom-header'>Seleccione Problema</div>",
+      selectionHeader: "<div class='custom-header'>Problemas Seleccionadas</div>"
+    });
+  </script>
+</div>
+        
+   				<input type="submit" value="Guardar">
+					<input type="button" value="Cancelar" onclick="closeajax('formulario_nuevo');">
+	
+</form> 
+
+	
+
+</div>

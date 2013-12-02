@@ -1,20 +1,16 @@
 <div id="formulario">
 	<form name="formproblema" action="problema.php?action=[accion]" method="post" enctype="multipart/form-data">
 		<table>
-		   
-			<tr>
-				<td>Actividad: </td>
-				<td>[actividad]</td>
-			</tr>
-			
+	        	<tr>
+				<td><label>Nombre (*): </label></td>
+				<td><input type="text" name="nombre" value="[nombre]" required/></td>
+		    	</tr>
+		  
 			 <tr>
 				<td>Nivel: </td>
 				<td>[nivel]</td>
 			</tr>
-			<tr>
-				<td><label>Nombre (*): </label></td>
-				<td><input type="text" name="nombre" value="[nombre]" required/></td>
-			</tr>
+			
 			<tr>
 				<td><label>Documento: </label></td>
 				<td><input name="imagen_path" type="file" /></td>

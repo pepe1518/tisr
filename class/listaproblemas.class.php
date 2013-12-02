@@ -122,10 +122,7 @@ function lista(){
                     <th>
                        Nivel
                     </th>
-                    <th>
-                     Olimpiada
-                    </th>
-                    <th>
+                      <th>
                        Nombre
                     </th>
                     <th>
@@ -138,12 +135,9 @@ function lista(){
                 </tr>";
 			foreach($listaCliente1 as $key => $valor){
 				$nivelolimpic = $query->getRow('nombre_nivel','nivel','where id_nivel = '.$valor['id_nivel']);
-				$olimpiada= $query->getRow('nombre_olimpiada','olimpiada','where id_olimpiada = '.$valor['id_olimpiada']);
 					$var=$valor['archivo_problema'];
 				$lista .= '<tr>
 							<td>'.$nivelolimpic ['nombre_nivel'].'</td>
-							<td>'.$olimpiada['nombre_olimpiada'].'</td>
-							
 							<td>'.$valor['nombre_problema'].'</td>
 							 <td><a  href="'.$valor['archivo_problema'].'"  TARGET="_blank" ><center><img src="images/pdf.png" /></center></a></td>
                                 <td><a  href="problemarespuesta.php?id='.$valor['id_problema'].'"  TARGET="_self" ><center><img src="images/agregarboton.png" /></center></a></td>

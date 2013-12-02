@@ -134,7 +134,7 @@ class participante
 			$template->SetParameter('contenido','Ud. no tiene privilegios de acceso, inicie sesion');
 		} elseif(isset($_SESSION['logged'])==1)
 		{
-			$template -> SetParameter('formlogin',"<h3>Usuario: ".$_SESSION['nombre']."</h3>");
+			$template -> SetParameter('formlogin',"<h2>Usuario: ".$_SESSION['nombre']."</h2>");
 			
 			$template -> SetParameter('menu',$base->menuAdmin());
 				$template->SetParameter('contenido',$this -> lista());

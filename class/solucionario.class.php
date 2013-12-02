@@ -41,31 +41,52 @@ class solucionario
 		$arreglo['id_problema'] = $_POST['id_problema'];
 		$arreglo['id_usuario'] = $_SESSION['idusuario'];
 		
-		
-		$todoOK = true;
+			$query = new query;
+				$todoOK = true;
 		$max_length = (1024*1024)*10;
 		$upload = new upload; // upload
-		$upload -> SetDirectory("uploads/doc");
-		$file = $_FILES['imagen_path']['name'];
-		$arreglo['archivo_solucionario'] = "";
-		if ($_FILES['imagen_path']['name'] != "")
-		{
+		 $name = $_SESSION['idusuario'].time();
+		 $rutasubida="uploads/solucionario/$name";
+         mkdir("$rutasubida", 777); 
+		$upload -> SetDirectory("$rutasubida");
+		
+		 shell_exec("chmod -R 777 uploads"); 
+		 
+	       $upload -> SetDirectory($rutasubida);
+		    $file = $_FILES['imagen_path']['name'];
+			if ($_FILES['imagen_path']['name'] != "")
+		    {
 			$tipo_archivo = $_FILES['imagen_path']['type'];
-			if (!(strpos($tipo_archivo, "pdf"))) {
-				$todoOK = false;
-				echo "<script>alert('solo archivos jpg. Por favor verifique e intente de nuevo, tipo: ".$tipo_archivo."');</script>";
-			} else {
-				$tamanio = $_FILES['imagen_path']['size'];
-				if ($tamanio > $max_length) {
+			{
+			$tipo_archivo = $_FILES['imagen_path']['type'];
+			
+			$allowed = "pdf";
+			$filename = $_FILES['imagen_path']['name'];
+			$nombrearchivosubido = pathinfo($filename, PATHINFO_FILENAME);
+			$ext = pathinfo($filename, PATHINFO_EXTENSION);
+			$tipo_archivo = $_FILES['imagen_path']['type'];
+			if (!(strpos($tipo_archivo, "pdf"))) 
+			{
 					$todoOK = false;
-					echo "<script>alert('el archivo de imagen es demasiado grande');</script>";
-				} else {
-					$name = "imagen_".time();
-					$upload -> SetFile("imagen_path");
-					if ($upload -> UploadFile( $name )){
-						$arreglo['archivo_solucionario'] = "uploads/doc/".$name.".".$upload->ext;
-					}
-				}
+					echo "<script>alert('Solo los archivos pdf Permitidos verifique y intende de nuevo: ".$ext."');</script>";
+	
+			}
+			
+			$tamanio = $_FILES['imagen_path']['size'];
+			if ($tamanio > $max_length)
+			{
+			 $todoOK = false;
+			 echo "<script>alert('el archivo de imagen es demasiado grande');</script>";
+			} else {
+			 //$name = $_SESSION['idusuario'].time();
+			 $upload -> SetFile("imagen_path");
+			if ($upload -> UploadFile($nombrearchivosubido.".".$upload->ext))
+              {                          
+            //  $arreglo['respuesta_nombre']=$_FILES['imagen_path']['name'];
+			  $arreglo['archivo_solucionario'] = $rutasubida."/".$nombrearchivosubido.".".$upload->ext;
+			  $nombrearchivo=$filename;
+              }
+			  }
 			}
 		}
 		if($todoOK) {
@@ -114,7 +135,7 @@ class solucionario
 		$init = ((isset($_GET['page'])== "" ? 1 :isset($_GET['page'])) - 1) * 1000;
         $listaproveedor1 = $query -> getRows("*","solucionario","LIMIT $init,1000");
 		if(count($listaproveedor1)>0){
-				$lista = "<table  class=art-article border=0 cellspacing=0 cellpadding=0>
+				$lista = "<table  class=art-article border=1 cellspacing=0 cellpadding=0>
 						<tr class = 'cabeza_lista'>
 							<td>Problema</td>
 							<td>Lenguaje</td>
@@ -163,7 +184,7 @@ class solucionario
 			$template->SetParameter('contenido','Ud. no tiene privilegios de acceso, inicie sesion');
 		} elseif(isset($_SESSION['logged'])==1)
 		{
-			$template -> SetParameter('formlogin',"<h3>Usuario: ".$_SESSION['nombre']."</h3>");
+			$template -> SetParameter('formlogin',"<h2>Usuario: ".$_SESSION['nombre']."</h2>");
 			  $template -> SetParameter('izquierdo',$base ->menuizquierdo());
 			$template -> SetParameter('menu',$base->menuAdmin());
 				$template->SetParameter('contenido',$this -> lista());

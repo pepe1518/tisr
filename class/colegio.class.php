@@ -4,19 +4,20 @@ class colegio
 {
 	function nuevo(){
 		$template = new template;
-		
 		$template -> SetTemplate('tpl/from_colegio.html');
 		$template -> SetParameter('nombre','');
+		$template -> SetParameter('descripcion','');
 	   $template -> SetParameter('accion','guardar');
 		return $template -> Display();
 	}
 	
 	function editar(){
 		$template = new template;
-		$template -> SetTemplate('tpl/form_colegio.html');
+		$template -> SetTemplate('tpl/from_colegio.html');
 		$query = new query;
 		$proveedor = $query -> getRow('*','colegio','where id_colegio = '.$_GET['id']);
 		$template -> SetParameter('nombre',$proveedor['nombre_colegio']);
+		$template -> SetParameter('descripcion',$proveedor['descripcion_colegio']);
 		$template -> SetParameter('accion','guardarEdit&id='.$_GET['id']);
 		return $template -> Display();
 	}
@@ -24,7 +25,7 @@ class colegio
 	function guardar(){
 		$query = new query;
 		$arreglo['nombre_colegio'] = $_POST['nombre']; /*$arreglo['campos bd tabla proveedor'] = $_POST['nombre obtenido formulario_proveedor']*/
-		
+		$arreglo['descripcion_colegio'] = $_POST['descripcion'];
 			if($query -> dbInsert($arreglo,"colegio")){
 			echo "<script>alert('Datos registrados exitosamente');</script>";
 		} else {
@@ -36,6 +37,7 @@ class colegio
 	function guardarEdit(){
 		$query = new query;
 		$arreglo['nombre_colegio'] = $_POST['nombre'];
+		$arreglo['descripcion_colegio'] = $_POST['descripcion'];
 		if($query -> dbUpdate($arreglo,"colegio","where id_colegio= ".$_GET['id'])){
 			echo "<script>alert('Datos actualizados exitosamente');</script>";
 		} else {
@@ -70,16 +72,15 @@ class colegio
 			$lista = "<table class=art-article border=1 cellspacing=0 cellpadding=0>
 						<tr class = 'cabeza_lista'>
 							<td>Nombre</td>
+							<td>Descripcion</td>
 							<td>Editar</td>
 							<td>Eliminar</td>
 						</tr>";
 			foreach($listaproveedor1 as $key => $valor){
 				$lista .= '<tr>
 							<td>'.$valor['nombre_colegio'].'</td>
-						
-							<td><a href="colegio.php?action=nuevo" target="_self"><center><img src="images/edit.gif" /></center></a></td>
-						
-							<td><a href="#" onclick="ajax(\'formulario_nuevo\',\'colegio.php?action=editar&id='.$valor['id_colegio'].'\',\'\'); return false;"><center><img src="images/edit.gif" /></center></a></td>
+							<td>'.$valor['descripcion_colegio'].'</td>
+								<td><a href="#" onclick="ajax(\'formulario_nuevo\',\'colegio.php?action=editar&id='.$valor['id_colegio'].'\',\'\'); return false;"><center><img src="images/edit.gif" /></center></a></td>
 							<td><a onclick="return confirm(\'Esta seguro de eliminar los datos?\');" href="colegio.php?action=eliminar&id='.$valor['id_colegio'].'"><center><img src="images/delete.gif" /></center></a></td>
 						   </tr>';
 			}

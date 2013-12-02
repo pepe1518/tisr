@@ -22,10 +22,10 @@ class Compiler
 
     public static function compileC($dir,$name, $config) {
         $command = sprintf($config->c_compiler,
-            $config->dir_bin . '/' . $name,
-            $config->dir_bin . '/' . $name,
-            $config->dir_bin . '/' . $name . '/' . $name,
-            $config->dir_problems . '/' . $name . '.c'
+            $config->dir_bin . '/'. $dir.'/' . $name,
+            $config->dir_bin . '/' . $dir.'/'. $name,
+            $config->dir_bin . '/'. $dir.'/' . $name . '/' . $name,
+            $config->dir_problems . '/' . $dir.'/'. $name . '.c'
         );
 
         return Compiler::exec($command);
@@ -33,10 +33,10 @@ class Compiler
 
     public static function compileCPP($dir,$name, $config) {
         $command = sprintf($config->cpp_compiler,
-            $config->dir_bin . '/' . $name,
-            $config->dir_bin . '/' . $name,
-            $config->dir_bin . '/' . $name . '/' . $name,
-            $config->dir_problems . '/' . $name . '.cpp'
+            $config->dir_bin . '/' . $dir.'/'. $name,
+            $config->dir_bin . '/' . $dir.'/'. $name,
+            $config->dir_bin . '/'. $dir.'/' . $name . '/' . $name,
+            $config->dir_problems . '/'. $dir.'/' . $name . '.cpp'
         );
 
         return Compiler::exec($command);

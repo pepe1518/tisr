@@ -65,7 +65,7 @@ class nivel
         $listaproveedor1 = $query -> getRows("*","nivel","LIMIT $init,1000");
 		if(count($listaproveedor1)>0){
 			/*<tr (class) --> referencia CSS (.) = 'nombre cabecera css (cabeza_lista)'>*/
-			$lista = "<table class=art-article border=0 cellspacing=0 cellpadding=0>
+			$lista = "<table class=art-article border=1 cellspacing=0 cellpadding=0>
 						<tr class = 'cabeza_lista'>
 							<td>Nombre</td>
 							<td>Editar</td>
@@ -104,7 +104,7 @@ class nivel
 			$template->SetParameter('contenido','Ud. no tiene privilegios de acceso, inicie sesion');
 		} elseif(isset($_SESSION['logged'])==1)
 		{
-			$template -> SetParameter('formlogin',"<h3>Usuario: ".$_SESSION['nombre']."</h3>");
+			$template -> SetParameter('formlogin',"<h2>Usuario: ".$_SESSION['nombre']."</h2>");
 			
 			$template -> SetParameter('menu',$base->menuAdmin());
 				$template->SetParameter('contenido',$this -> lista());
